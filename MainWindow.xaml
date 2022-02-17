@@ -22,7 +22,7 @@
 
         <Menu x:Name="menu" Grid.ColumnSpan="3">
             <MenuItem Header="Datei">
-                <MenuItem x:Name="menuSave" Header="Speichern" />
+                <MenuItem x:Name="menuSave" Header="Speichern" Click="MenuSave_Click" IsEnabled="False"/>
                 <Separator />
                 <MenuItem x:Name="menuClose" Header="Beenden" Click="MenuClose_Click"/>
             </MenuItem>

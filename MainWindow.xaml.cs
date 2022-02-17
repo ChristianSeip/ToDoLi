@@ -84,6 +84,7 @@ namespace ToDoLi
                 }
 
                 LoadTasks();
+                menuSave.IsEnabled = true;
             }
         }
 
@@ -97,6 +98,7 @@ namespace ToDoLi
 
             _todo.RemoveTask(listBoxTasks.SelectedIndex);
             LoadTasks();
+            menuSave.IsEnabled = true;
         }
 
         // Calls the TaskEditor dialog and checks the inputs for validity to edit the selected task.
@@ -121,6 +123,7 @@ namespace ToDoLi
                 _todo.AddTask(taskEditor.TaskTitle, taskEditor.TaskDescription);
                 _todo.TaskList.RemoveAt(listBoxTasks.SelectedIndex);
                 LoadTasks();
+                menuSave.IsEnabled = true;
             }
         }
 
@@ -165,6 +168,7 @@ namespace ToDoLi
                 if (msgBoxResult == MessageBoxResult.Yes)
                 {
                     _todo.Save();
+                    menuSave.IsEnabled = false;
                     return true;
                 }
                 else if (msgBoxResult == MessageBoxResult.Cancel)
@@ -196,6 +200,7 @@ namespace ToDoLi
             _todo.Delete();
             LoadLists();
             listBoxLists.SelectedIndex = -1;
+            menuSave.IsEnabled = true;
         }
 
         private void LabelRemoveTask_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
@@ -304,6 +309,13 @@ namespace ToDoLi
             }
         }
 
+        private void MenuSave_Click(object sender, RoutedEventArgs e)
+        {
+            _todo.Save();
+            menuSave.IsEnabled = false;
+            MessageBox.Show($"Änderungen wurden gespeichert.", "Speichern erfolgreich", MessageBoxButton.OK, MessageBoxImage.Information);
+        }
+
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             _config.WindowHeight = this.Height;
@@ -325,6 +337,5 @@ namespace ToDoLi
             Logger.RemoveOldLogs();
             Logger.WriteEntry("Application geladen.");
         }
-
     }
 }
