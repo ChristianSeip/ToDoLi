@@ -2,6 +2,8 @@
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using System.Threading;
+using System.Globalization;
 
 namespace ToDoLi
 {
@@ -16,13 +18,19 @@ namespace ToDoLi
 
         public MainWindow()
         {
+            _config = new Config();
+
+            Thread.CurrentThread.CurrentUICulture = new CultureInfo(_config.Language);
+
             InitializeComponent();
 
-            _config = new Config();
             this.Height = _config.WindowHeight;
             this.Width = _config.WindowWidth;
             this.Left = _config.WindowPosX;
             this.Top = _config.WindowPosY;
+
+            SetLanguageMenuCheckStatus();
+
         }
 
         // Calls the NewListDialog and checks the inputs for validity to create a new todo list.
@@ -41,16 +49,16 @@ namespace ToDoLi
             {
                 if (newListDialog.ListName.IndexOfAny(System.IO.Path.GetInvalidFileNameChars()) != -1)
                 {
-                    MessageBox.Show("Der gewählte Name enthält leider ungültige Zeichen. Bitte wählen Sie einen anderen Namen.", "Ungültiger Name", MessageBoxButton.OK, MessageBoxImage.Error);
-                    Logger.WriteEntry($"Liste kann nicht angelegt werden. Ungültige Zeichen in \"{newListDialog.ListName}\".");
+                    MessageBox.Show(Properties.Resources.MESSAGE_BOX_ERROR_INVALID_CHARACTERS, Properties.Resources.MESSAGEBOX_ERROR_TITLE, MessageBoxButton.OK, MessageBoxImage.Error);
+                    Logger.WriteEntry($"Cannot create list. Invalid characters in \"{newListDialog.ListName}\".");
                     AddList();
                     return;
                 }
 
                 if (_todo.Exists(newListDialog.ListName))
                 {
-                    MessageBox.Show($"Es existiert bereits eine Liste mit dem Namen {newListDialog.ListName}. Bitte wählen Sie einen anderen Namen.", "Liste existiert bereits", MessageBoxButton.OK, MessageBoxImage.Error);
-                    Logger.WriteEntry($"Liste kann nicht angelegt werden. Es existiert bereits eine Liste mit dem Namen \"{newListDialog.ListName}\".");
+                    MessageBox.Show(Properties.Resources.WINDOW_MAIN_ERROR_LIST_EXISTS_ALREADY, Properties.Resources.MESSAGEBOX_ERROR_TITLE, MessageBoxButton.OK, MessageBoxImage.Error);
+                    Logger.WriteEntry($"Cannot create list. List name \"{newListDialog.ListName}\" is already taken.");
                     AddList();
                     return;
                 }
@@ -79,7 +87,7 @@ namespace ToDoLi
             {
                 if (!_todo.AddTask(taskEditor.TaskTitle, taskEditor.TaskDescription))
                 {
-                    MessageBox.Show("Beim Hinzufügen der Aufgabe ist ein unerwarteter Fehler aufgetreten. Bitte versuche es erneut.", "Unerwarteter Fehler", MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBox.Show(Properties.Resources.WINDOW_MAIN_NEW_TASK_EXCEPTION, Properties.Resources.MESSAGEBOX_ERROR_TITLE, MessageBoxButton.OK, MessageBoxImage.Error);
                     return;
                 }
 
@@ -112,14 +120,14 @@ namespace ToDoLi
             string currentTitle = listBoxTasks.SelectedItem.ToString();
             string currentDescription = _todo.TaskList.ElementAt(listBoxTasks.SelectedIndex).Description.ToString();
 
-            Logger.WriteEntry($"Rufe Editor für Aufgabe \"{currentTitle}\" auf.");
+            Logger.WriteEntry($"Call task editor for task \"{currentTitle}\".");
             TaskEditor taskEditor = new TaskEditor(currentTitle, currentDescription);
             taskEditor.Owner = this;
             taskEditor.ShowDialog();
 
             if (taskEditor.DialogResult == true)
             {
-                Logger.WriteEntry($"Ändere Aufgabe \"{currentTitle}\" Beschreibung: \"{currentDescription}\" in \"{taskEditor.TaskTitle}\" Beschreibung: \"{taskEditor.TaskDescription}\".");
+                Logger.WriteEntry($"Edit task \"{currentTitle}\" and description \"{currentDescription}\" to task \"{taskEditor.TaskTitle}\" description: \"{taskEditor.TaskDescription}\".");
                 _todo.AddTask(taskEditor.TaskTitle, taskEditor.TaskDescription);
                 _todo.TaskList.RemoveAt(listBoxTasks.SelectedIndex);
                 LoadTasks();
@@ -131,7 +139,7 @@ namespace ToDoLi
         private void LoadLists()
         {
 
-            Logger.WriteEntry("Lade ToDo-Listen.");
+            Logger.WriteEntry("Load todo lists.");
 
             listBoxLists.Items.Clear();
 
@@ -146,7 +154,7 @@ namespace ToDoLi
         // Loads the task list for the selected todo list.
         private void LoadTasks()
         {
-            Logger.WriteEntry($"Lade Aufgaben für Liste \"{_todo.Name}\"");
+            Logger.WriteEntry($"Load tasks for list \"{_todo.Name}\".");
             menuEditTask.IsEnabled = false;
             menuDeleteTask.IsEnabled = false;
 
@@ -163,7 +171,7 @@ namespace ToDoLi
         {
             if (_todo.IsUnsaved)
             {
-                var msgBoxResult = MessageBox.Show($"Es gibt ungespeicherte Änderungen an der Liste {_todo.Name}. Möchten Sie die Änderungen speichern?", "Änderungen speichern?", MessageBoxButton.YesNoCancel, MessageBoxImage.Question);
+                var msgBoxResult = MessageBox.Show(Properties.Resources.MESSAGEBOX_SAVE_CHANGES, Properties.Resources.MESSAGEBOX_SAVE_CHANGES_TITLE, MessageBoxButton.YesNoCancel, MessageBoxImage.Question);
 
                 if (msgBoxResult == MessageBoxResult.Yes)
                 {
@@ -178,6 +186,22 @@ namespace ToDoLi
             }
 
             return true;
+        }
+
+        // Set IsChecked status in settings menu for the current language
+        private void SetLanguageMenuCheckStatus()
+        {
+            switch (_config.Language)
+            {
+                case "de-DE":
+                    menuSettingsLanguageGerman.IsChecked = true;
+                    menuSettingsLanguageEnglish.IsChecked = false;
+                    break;
+                default:
+                    menuSettingsLanguageEnglish.IsChecked = true;
+                    menuSettingsLanguageGerman.IsChecked = false;
+                    break;
+            }
         }
 
         private void LabelAddList_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
@@ -288,16 +312,16 @@ namespace ToDoLi
             {
                 if (newListDialog.ListName.IndexOfAny(System.IO.Path.GetInvalidFileNameChars()) != -1)
                 {
-                    MessageBox.Show("Der gewählte Name enthält leider ungültige Zeichen. Bitte wählen Sie einen anderen Namen.", "Ungültiger Name", MessageBoxButton.OK, MessageBoxImage.Error);
-                    Logger.WriteEntry($"Liste kann nicht geändert werden. Ungültige Zeichen in \"{newListDialog.ListName}\".");
+                    MessageBox.Show(Properties.Resources.MESSAGE_BOX_ERROR_INVALID_CHARACTERS, Properties.Resources.MESSAGEBOX_ERROR_TITLE, MessageBoxButton.OK, MessageBoxImage.Error);
+                    Logger.WriteEntry($"Cannot rename list. Invalid characters in \"{newListDialog.ListName}\".");
                     AddList();
                     return;
                 }
 
                 if (_todo.Exists(newListDialog.ListName))
                 {
-                    MessageBox.Show($"Es existiert bereits eine Liste mit dem Namen {newListDialog.ListName}. Bitte wählen Sie einen anderen Namen.", "Liste existiert bereits", MessageBoxButton.OK, MessageBoxImage.Error);
-                    Logger.WriteEntry($"Liste kann nicht angelegt werden. Eine Liste mit dem Namen  \"{newListDialog.ListName}\" existiert bereits.");
+                    MessageBox.Show(Properties.Resources.WINDOW_MAIN_ERROR_LIST_EXISTS_ALREADY, Properties.Resources.MESSAGEBOX_ERROR_TITLE, MessageBoxButton.OK, MessageBoxImage.Error);
+                    Logger.WriteEntry($"Cannot rename list. List name \"{newListDialog.ListName}\" is already taken.");
                     AddList();
                     return;
                 }
@@ -313,7 +337,7 @@ namespace ToDoLi
         {
             _todo.Save();
             menuSave.IsEnabled = false;
-            MessageBox.Show($"Änderungen wurden gespeichert.", "Speichern erfolgreich", MessageBoxButton.OK, MessageBoxImage.Information);
+            MessageBox.Show(Properties.Resources.MESSAGEBOX_CHANGES_SUCCESFULLY_SAVED, Properties.Resources.MESSAGEBOX_CHANGES_SUCCESFULLY_SAVED_TITLE, MessageBoxButton.OK, MessageBoxImage.Information);
         }
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
@@ -326,7 +350,7 @@ namespace ToDoLi
 
             if (!SaveChanges())
             {
-                Logger.WriteEntry("Beende Application.");
+                Logger.WriteEntry("Closing Application.");
                 e.Cancel = true;
             }
         }
@@ -335,7 +359,18 @@ namespace ToDoLi
         {
             LoadLists();
             Logger.RemoveOldLogs();
-            Logger.WriteEntry("Application geladen.");
+            Logger.WriteEntry("Application loaded.");
+        }
+
+        private void menuSettingsLanguage_Click(object sender, RoutedEventArgs e)
+        {
+            var item = sender as MenuItem;
+            _config.Language = item.Tag.ToString();
+            SetLanguageMenuCheckStatus();
+
+            System.Diagnostics.Process.Start(Application.ResourceAssembly.Location);
+            Application.Current.Shutdown();
+
         }
     }
 }

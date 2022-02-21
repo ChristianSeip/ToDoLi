@@ -50,7 +50,7 @@ namespace ToDoLi
 
             if (textBoxTitle.Text == string.Empty)
             {
-                MessageBox.Show("Sie haben keinen Namen für die Aufgabe festgelegt.", "Fehler", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show(Properties.Resources.MESSAGEBOX_ERROR_MISSING_INPUT, Properties.Resources.MESSAGEBOX_ERROR_TITLE, MessageBoxButton.OK, MessageBoxImage.Error);
                 textBoxTitle.Focus();
                 return;
             }

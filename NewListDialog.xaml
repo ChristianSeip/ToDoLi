@@ -4,19 +4,20 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ToDoLi"
+        xmlns:p="clr-namespace:ToDoLi.Properties"
         mc:Ignorable="d"
-        Title="Listennamen festlegen" Height="150" Width="300" ResizeMode="NoResize" ShowInTaskbar="False" Topmost="True" WindowStartupLocation="CenterOwner" WindowStyle="ToolWindow">
+        Title="{x:Static p:Resources.WINDOW_NEWLISTDIALOG_TITLE}" Height="150" Width="300" ResizeMode="NoResize" ShowInTaskbar="False" Topmost="True" WindowStartupLocation="CenterOwner" WindowStyle="ToolWindow">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="35" />
             <RowDefinition />
             <RowDefinition Height="55" />
         </Grid.RowDefinitions>
-        <Label x:Name="label" Content="Bitte gib einen Namen für die Liste an." HorizontalAlignment="Stretch" Margin="10,5,10,0" VerticalAlignment="Center"/>
+        <Label x:Name="label" Content="{x:Static p:Resources.WINDOW_NEWLISTDIALOG_LABEL}" HorizontalAlignment="Stretch" Margin="10,5,10,0" VerticalAlignment="Center"/>
         
         <TextBox x:Name="textBox" HorizontalAlignment="Stretch" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Center" Margin="10,0,10,0" />
-        
-        <Button x:Name="buttonOK" Content="Festlegen" HorizontalAlignment="Left" Margin="10,0,0,0" Grid.Row="2" VerticalAlignment="Center" Width="100" Height="30" IsDefault="True" Click="ButtonOK_Click" />
-        <Button x:Name="buttonCancel" Content="Abbrechen" HorizontalAlignment="Right" Margin="0,0,10,0" Grid.Row="2" VerticalAlignment="Center" Width="100" Height="30" IsCancel="True" Click="ButtonCancel_Click" />
+
+        <Button x:Name="buttonOK" Content="{x:Static p:Resources.BUTTON_SAVE}" HorizontalAlignment="Left" Margin="10,0,0,0" Grid.Row="2" VerticalAlignment="Center" Width="100" Height="30" IsDefault="True" Click="ButtonOK_Click" />
+        <Button x:Name="buttonCancel" Content="{x:Static p:Resources.BUTTON_CANCEL}" HorizontalAlignment="Right" Margin="0,0,10,0" Grid.Row="2" VerticalAlignment="Center" Width="100" Height="30" IsCancel="True" Click="ButtonCancel_Click" />
     </Grid>
 </Window>

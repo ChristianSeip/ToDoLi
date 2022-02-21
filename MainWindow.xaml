@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ToDoLi"
+        xmlns:p="clr-namespace:ToDoLi.Properties"
         mc:Ignorable="d"
         Title="ToDoLi" Height="450" Width="800" FontSize="14" Loaded="Window_Loaded" Closing="Window_Closing">
     <Grid>
@@ -21,31 +22,41 @@
         </Grid.ColumnDefinitions>
 
         <Menu x:Name="menu" Grid.ColumnSpan="3">
-            <MenuItem Header="Datei">
-                <MenuItem x:Name="menuSave" Header="Speichern" Click="MenuSave_Click" IsEnabled="False"/>
+            
+            <MenuItem Header="{x:Static p:Resources.MAIN_MENU_FILE}">
+                <MenuItem x:Name="menuSave" Header="{x:Static p:Resources.MENU_FILE_SAVE}" Click="MenuSave_Click" IsEnabled="False"/>
                 <Separator />
-                <MenuItem x:Name="menuClose" Header="Beenden" Click="MenuClose_Click"/>
+                <MenuItem x:Name="menuClose" Header="{x:Static p:Resources.MENU_FILE_CLOSE}" Click="MenuClose_Click"/>
             </MenuItem>
-            <MenuItem Header="Bearbeiten">
-                <MenuItem Header="Listen">
-                    <MenuItem x:Name="menuAddList" Header="Neue Liste" Click="MenuAddList_Click"/>
-                    <MenuItem x:Name="menuRenameList" Header="Liste umbenennen" IsEnabled="False" Click="MenuRenameList_Click "/>
-                    <MenuItem x:Name="menuDeleteList" Header="Liste löschen" IsEnabled="False" Click="MenuDeleteList_Click "/>
+            
+            <MenuItem Header="{x:Static p:Resources.MAIN_MENU_EDIT}">
+                <MenuItem Header="{x:Static p:Resources.LISTS_TITLE}">
+                    <MenuItem x:Name="menuAddList" Header="{x:Static p:Resources.MENU_EDIT_LISTS_ADD}" Click="MenuAddList_Click"/>
+                    <MenuItem x:Name="menuRenameList" Header="{x:Static p:Resources.MENU_EDIT_LISTS_RENAME}" IsEnabled="False" Click="MenuRenameList_Click "/>
+                    <MenuItem x:Name="menuDeleteList" Header="{x:Static p:Resources.MENU_EDIT_LISTS_DELETE}" IsEnabled="False" Click="MenuDeleteList_Click "/>
                 </MenuItem>
-                <MenuItem Header="Aufgaben">
-                    <MenuItem x:Name="menuAddTask" Header="Neue Aufgabe" IsEnabled="False" Click="MenuAddTask_Click" />
-                    <MenuItem x:Name="menuEditTask" Header="Aufgabe bearbeiten" IsEnabled="False" Click="MenuEditTask_Click" />
-                    <MenuItem x:Name="menuDeleteTask" Header="Aufgabe löschen" IsEnabled="False" Click="MenuDeleteTask_Click" />
+                
+                <MenuItem Header="{x:Static p:Resources.MENU_EDIT_TASKS}">
+                    <MenuItem x:Name="menuAddTask" Header="{x:Static p:Resources.MENU_EDIT_TASKS_ADD}" IsEnabled="False" Click="MenuAddTask_Click" />
+                    <MenuItem x:Name="menuEditTask" Header="{x:Static p:Resources.MENU_EDIT_TASKS_EDIT}" IsEnabled="False" Click="MenuEditTask_Click" />
+                    <MenuItem x:Name="menuDeleteTask" Header="{x:Static p:Resources.MENU_EDIT_TASKS_DELETE}" IsEnabled="False" Click="MenuDeleteTask_Click" />
+                </MenuItem>
+            </MenuItem>
+
+            <MenuItem Header="{x:Static p:Resources.MAIN_MENU_SETTINGS}">
+                <MenuItem Header="{x:Static p:Resources.MENU_SETTINGS_LANGUAGE}">
+                    <MenuItem x:Name="menuSettingsLanguageEnglish" Tag="en-GB" Header="{x:Static p:Resources.MENU_SETTINGS_LANGUAGE_EN}" IsCheckable="True" IsChecked="False" Click="menuSettingsLanguage_Click"/>
+                    <MenuItem x:Name="menuSettingsLanguageGerman" Tag="de-DE" Header="{x:Static p:Resources.MENU_SETTINGS_LANGUAGE_DE}" IsCheckable="True" IsChecked="False" Click="menuSettingsLanguage_Click"/>
                 </MenuItem>
             </MenuItem>
         </Menu>
 
-        <Label x:Name="labelListsHeader" Content="Listen" HorizontalAlignment="Left" Grid.Row="1" VerticalAlignment="Top" Margin="10,7,0,0" FontSize="12" Width="81" />
+        <Label x:Name="labelListsHeader" Content="{x:Static p:Resources.LISTS_TITLE}" HorizontalAlignment="Left" Grid.Row="1" VerticalAlignment="Top" Margin="10,7,0,0" FontSize="12" Width="81" />
         <Label x:Name="labelAddList" Content="+" HorizontalAlignment="Right" Margin="0,6,25,2" Grid.Row="1" Foreground="#FF5F985F" FontWeight="Bold" BorderThickness="0.5" BorderBrush="#FF2E312E" MouseLeftButtonUp="LabelAddList_MouseLeftButtonUp" Cursor="Hand"/>
         <Label x:Name="labelRemoveList" Content="-" HorizontalAlignment="Right" Margin="0,6,0,1" Grid.Row="1" Foreground="#FFBB3737" FontWeight="Bold" BorderThickness="0.5" BorderBrush="#FF3E2222" MouseLeftButtonUp="LabelRemoveList_MouseLeftButtonUp" Cursor="Hand"/>
         <ListBox x:Name="listBoxLists" Grid.Row="2" d:ItemsSource="{d:SampleData ItemCount=5}" Grid.RowSpan="2" Margin="10,2,0,10" SelectionChanged="ListBoxLists_SelectionChanged"/>
 
-        <Label x:Name="labelTasksHeader" Content="Aufgaben" HorizontalAlignment="Left" Grid.Row="1" Grid.Column="1" VerticalAlignment="Top" Margin="10,7,0,0" FontSize="12" Width="132" />
+        <Label x:Name="labelTasksHeader" Content="{x:Static p:Resources.TASKS_TITLE}" HorizontalAlignment="Left" Grid.Row="1" Grid.Column="1" VerticalAlignment="Top" Margin="10,7,0,0" FontSize="12" Width="132" />
         <Label x:Name="labelAddTask" Content="+" HorizontalAlignment="Right" Margin="0,6,35,2" Grid.Row="1" Grid.Column="1" Foreground="#FF5F985F" FontWeight="Bold" BorderThickness="0.5" BorderBrush="#FF2E312E" Cursor="Hand" MouseLeftButtonUp="LabelAddTask_MouseLeftButtonUp" />
         <Label x:Name="labelRemoveTask" Content="-" HorizontalAlignment="Right" Margin="0,6,10,1" Grid.Row="1" Grid.Column="1" Foreground="#FFBB3737" FontWeight="Bold" BorderThickness="0.5" BorderBrush="#FF3E2222" Cursor="Hand" MouseLeftButtonUp="LabelRemoveTask_MouseLeftButtonUp" />
         <ListBox x:Name="listBoxTasks" Grid.Row="2" Grid.Column="1" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="10,2,10,0" SelectionChanged="ListBoxTasks_SelectionChanged"/>

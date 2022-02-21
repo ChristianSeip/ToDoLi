@@ -20,6 +20,9 @@ namespace ToDoLi
         // Contains the value for MainWindow.Top
         private double _windowPosY = 0.0;
 
+        // Contains the language key for localisation
+        private string _language = "en-GB";
+
         public Config()
         {
             _registryKey = Registry.CurrentUser.OpenSubKey("Software", true);
@@ -75,6 +78,11 @@ namespace ToDoLi
         public double WindowPosY { get => _windowPosY; set => _windowPosY = value; }
 
         /// <summary>
+        /// Gets or sets the value of the Language property.
+        /// </summary>
+        public string Language { get => _language; set => _language = value; }
+
+        /// <summary>
         /// Saves the current configuration.
         /// </summary>
         public void Save()
@@ -85,6 +93,7 @@ namespace ToDoLi
                 _registryKey.SetValue("height", WindowHeight);
                 _registryKey.SetValue("posX", WindowPosX);
                 _registryKey.SetValue("posY", WindowPosY);
+                _registryKey.SetValue("language", Language);
             }
             catch (Exception ex)
             {
@@ -119,10 +128,16 @@ namespace ToDoLi
                     _registryKey.SetValue("posY", (System.Windows.SystemParameters.PrimaryScreenHeight / 2) - (WindowHeight / 2));
                 }
 
+                if (_registryKey.GetValue("language") == null)
+                {
+                    _registryKey.SetValue("language", "en-GB");
+                }
+
                 WindowHeight = Convert.ToDouble(_registryKey.GetValue("height").ToString());
                 WindowWidth = Convert.ToDouble(_registryKey.GetValue("width").ToString());
                 WindowPosX = Convert.ToDouble(_registryKey.GetValue("posX").ToString());
                 WindowPosY = Convert.ToDouble(_registryKey.GetValue("posY").ToString());
+                Language = _registryKey.GetValue("language").ToString();
             }
             catch (Exception ex)
             {
