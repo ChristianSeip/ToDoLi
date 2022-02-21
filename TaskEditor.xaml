@@ -4,8 +4,9 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ToDoLi"
+        xmlns:p="clr-namespace:ToDoLi.Properties"
         mc:Ignorable="d"
-        Title="Aufgaben-Editor" Height="300" Width="500" FontSize="14" WindowStyle="ToolWindow" ResizeMode="NoResize" Topmost="True" WindowStartupLocation="CenterOwner">
+        Title="{x:Static p:Resources.WINDOW_TASKEDITOR_TITLE}" Height="300" Width="500" FontSize="14" WindowStyle="ToolWindow" ResizeMode="NoResize" Topmost="True" WindowStartupLocation="CenterOwner">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="35"/>
@@ -15,14 +16,14 @@
             <RowDefinition Height="55" />
         </Grid.RowDefinitions>
 
-        <Label x:Name="labelTitle" Content="Titel" HorizontalAlignment="Stretch" Margin="10,7,10,0" VerticalAlignment="Center"/>
+        <Label x:Name="labelTitle" Content="{x:Static p:Resources.WINDOW_TASKEDITOR_LABEL_TASK_TITLE}" HorizontalAlignment="Stretch" Margin="10,7,10,0" VerticalAlignment="Center"/>
         <TextBox x:Name="textBoxTitle" HorizontalAlignment="Stretch" Margin="10,7,10,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Stretch" />
 
-        <Label Grid.Row="2" x:Name="labelDescription" Content="Beschreibung" HorizontalAlignment="Stretch" Margin="10,7,10,0" VerticalAlignment="Center"/>
+        <Label Grid.Row="2" x:Name="labelDescription" Content="{x:Static p:Resources.WINDOW_TASKEDITOR_LABEL_TASK_DESCRIPTION}" HorizontalAlignment="Stretch" Margin="10,7,10,0" VerticalAlignment="Center"/>
         <TextBox Grid.Row="3" Name="textBoxDescription" TextWrapping="Wrap" AcceptsReturn="True" VerticalScrollBarVisibility="Visible" Margin="10,7,10,0" />
-        
-        <Button x:Name="buttonOK" Content="Bestätigen" HorizontalAlignment="Left" Margin="10,0,0,0" Grid.Row="4" VerticalAlignment="Center" Width="100" Height="30" IsDefault="True" Click="ButtonOK_Click" />
-        <Button x:Name="buttonCancel" Content="Abbrechen" HorizontalAlignment="Right" Margin="0,0,10,0" Grid.Row="4" VerticalAlignment="Center" Width="100" Height="30" IsCancel="True" Click="ButtonCancel_Click"/>
+
+        <Button x:Name="buttonOK" Content="{x:Static p:Resources.BUTTON_SAVE}" HorizontalAlignment="Left" Margin="10,0,0,0" Grid.Row="4" VerticalAlignment="Center" Width="100" Height="30" IsDefault="True" Click="ButtonOK_Click" />
+        <Button x:Name="buttonCancel" Content="{x:Static p:Resources.BUTTON_CANCEL}" HorizontalAlignment="Right" Margin="0,0,10,0" Grid.Row="4" VerticalAlignment="Center" Width="100" Height="30" IsCancel="True" Click="ButtonCancel_Click"/>
 
     </Grid>
 </Window>

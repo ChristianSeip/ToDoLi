@@ -118,105 +118,105 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="BUTTON_CANCEL" xml:space="preserve">
-    <value>Cancel</value>
+    <value>Abbrechen</value>
   </data>
   <data name="BUTTON_SAVE" xml:space="preserve">
-    <value>Save</value>
+    <value>Speichern</value>
   </data>
   <data name="LISTS_TITLE" xml:space="preserve">
-    <value>Lists</value>
+    <value>Listen</value>
   </data>
   <data name="MAIN_MENU_EDIT" xml:space="preserve">
-    <value>Edit</value>
+    <value>Bearbeiten</value>
   </data>
   <data name="MAIN_MENU_FILE" xml:space="preserve">
-    <value>File</value>
+    <value>Datei</value>
   </data>
   <data name="MAIN_MENU_SETTINGS" xml:space="preserve">
-    <value>Settings</value>
+    <value>Einstellungen</value>
   </data>
   <data name="MENU_EDIT_LISTS_ADD" xml:space="preserve">
-    <value>New List</value>
+    <value>Liste hinzufügen</value>
   </data>
   <data name="MENU_EDIT_LISTS_DELETE" xml:space="preserve">
-    <value>Delete List</value>
+    <value>Liste löschen</value>
   </data>
   <data name="MENU_EDIT_LISTS_RENAME" xml:space="preserve">
-    <value>Rename List</value>
+    <value>Liste umbenennen</value>
   </data>
   <data name="MENU_EDIT_TASKS" xml:space="preserve">
-    <value>Tasks</value>
+    <value>Aufgaben</value>
   </data>
   <data name="MENU_EDIT_TASKS_ADD" xml:space="preserve">
-    <value>New Task</value>
+    <value>Aufgabe hinzufügen</value>
   </data>
   <data name="MENU_EDIT_TASKS_DELETE" xml:space="preserve">
-    <value>Delete Task</value>
+    <value>Aufgabe löschen</value>
   </data>
   <data name="MENU_EDIT_TASKS_EDIT" xml:space="preserve">
-    <value>Edit Task</value>
+    <value>Aufgabe bearbeiten</value>
   </data>
   <data name="MENU_FILE_CLOSE" xml:space="preserve">
-    <value>Close</value>
+    <value>Schließen</value>
   </data>
   <data name="MENU_FILE_SAVE" xml:space="preserve">
-    <value>Save</value>
+    <value>Speichern</value>
   </data>
   <data name="MENU_SETTINGS_LANGUAGE" xml:space="preserve">
-    <value>Language</value>
+    <value>Sprache</value>
   </data>
   <data name="MENU_SETTINGS_LANGUAGE_DE" xml:space="preserve">
-    <value>German</value>
+    <value>Deutsch</value>
   </data>
   <data name="MENU_SETTINGS_LANGUAGE_EN" xml:space="preserve">
-    <value>English</value>
+    <value>Englisch</value>
   </data>
   <data name="MESSAGEBOX_CHANGES_SUCCESFULLY_SAVED" xml:space="preserve">
-    <value>Changes were saved successfully</value>
+    <value>Die Änderungen wurden erfolgreich gespeichert!</value>
   </data>
   <data name="MESSAGEBOX_CHANGES_SUCCESFULLY_SAVED_TITLE" xml:space="preserve">
-    <value>Successfully saved</value>
+    <value>Speichern erfolgreich</value>
   </data>
   <data name="MESSAGEBOX_ERROR_MISSING_INPUT" xml:space="preserve">
-    <value>Not all required fields have been filled.</value>
+    <value>Es wurden nicht alle benötigten Felder ausgefüllt.</value>
   </data>
   <data name="MESSAGEBOX_ERROR_TITLE" xml:space="preserve">
-    <value>Error</value>
+    <value>Fehler</value>
   </data>
   <data name="MESSAGEBOX_SAVE_CHANGES" xml:space="preserve">
-    <value>There are unsaved changes to the list. Do you want to save the changes?</value>
+    <value>Es gibt ungespeicherte Änderungen an der Liste. Möchten Sie die Änderungen speichern?</value>
   </data>
   <data name="MESSAGEBOX_SAVE_CHANGES_TITLE" xml:space="preserve">
-    <value>Save Changes?</value>
+    <value>Änderungen speichern?</value>
   </data>
   <data name="MESSAGE_BOX_ERROR_INVALID_CHARACTERS" xml:space="preserve">
-    <value>Your entry contains invalid characters.</value>
+    <value>Die Eingabe enthält ungültige Zeichen.</value>
   </data>
   <data name="TASKS_TITLE" xml:space="preserve">
-    <value>Tasks</value>
+    <value>Aufgaben</value>
   </data>
   <data name="WINDOW_MAIN_ERROR_LIST_EXISTS_ALREADY" xml:space="preserve">
-    <value>The list name is already taken. Please choose another name.</value>
+    <value>Es existiert bereits eine Liste mit dem Namen. Bitte wählen Sie einen anderen Namen.</value>
   </data>
   <data name="WINDOW_MAIN_NEW_TASK_EXCEPTION" xml:space="preserve">
-    <value>An unexpected error occurred while adding the task. Please try again.</value>
+    <value>Beim Hinzufügen der Aufgabe ist ein unerwarteter Fehler aufgetreten. Bitte versuchen Sie es erneut.</value>
   </data>
   <data name="WINDOW_NEWLISTDIALOG_BUTTON_SET" xml:space="preserve">
-    <value>Set name</value>
+    <value>Festlegen</value>
   </data>
   <data name="WINDOW_NEWLISTDIALOG_LABEL" xml:space="preserve">
-    <value>Insert a name for your list</value>
+    <value>Bitte gib einen Namen für die Liste an.</value>
   </data>
   <data name="WINDOW_NEWLISTDIALOG_TITLE" xml:space="preserve">
-    <value>Set list name</value>
+    <value>Listennamen festlegen</value>
   </data>
   <data name="WINDOW_TASKEDITOR_LABEL_TASK_DESCRIPTION" xml:space="preserve">
-    <value>Description</value>
+    <value>Beschreibung</value>
   </data>
   <data name="WINDOW_TASKEDITOR_LABEL_TASK_TITLE" xml:space="preserve">
-    <value>Title</value>
+    <value>Titel</value>
   </data>
   <data name="WINDOW_TASKEDITOR_TITLE" xml:space="preserve">
-    <value>Task Editor</value>
+    <value>Aufgaben-Editor</value>
   </data>
 </root>
