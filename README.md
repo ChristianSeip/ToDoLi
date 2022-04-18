@@ -12,11 +12,11 @@ ToDoLi is a simple application to manage your todo lists.
 ## Contribution
 Source code and issues are hosted on GitHub:
 ```
-https://github.com/Ravitar/ToDoLi
+https://github.com/ChristianSeip/ToDoLi
 ```
 
 ## License
 MIT License (https://opensource.org/licenses/MIT)
 
 ## Author
-Christian Seip (https://www.ravitar.com)
+Christian Seip
